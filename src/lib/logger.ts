@@ -1,8 +1,8 @@
 import * as winston from 'winston';
-import { Logger, Template } from 'winston';
+import { Logger } from 'winston';
 import config from '../config';
 
-const template: Template = (log: any) =>
+const template = (log: any) =>
 `${log.timestamp} - [${log.level}]: ${log.stack || log.message}`;
 
 const logger: Logger = winston.createLogger({

@@ -6,6 +6,6 @@ RUN mkdir /app
 WORKDIR /app
 
 # install utilities. I currently like yarn
-RUN npm install -g yarn nodemon typescript tslint
+RUN npm install -g yarn nodemon typescript tslint ts-node jest ts-jest
 # install dependencies
 RUN yarn
