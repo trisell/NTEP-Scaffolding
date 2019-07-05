@@ -1,9 +1,14 @@
+import { Application } from 'express';
 import config from './config';
 import logger from './lib/logger';
-import router from './router';
+import router from './router/router';
 
-const app = router;
+const app: Application = router;
 
-app.listen(config.port);
+if (!module.parent) {
+  app.listen(config.port);
+}
 
 logger.info(`Server started. Listening on ${config.port}`);
+
+export default app;
