@@ -18,8 +18,10 @@
   "homepage": "https://github.com/trisell/NTEP-Scaffolding#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "envalid": "^5.0.0",
     "express": "^4.16.4",
     "pg": "^7.9.0",
+    "typeorm": "^0.2.18",
     "winston": "^3.2.1"
   },
   "devDependencies": {
@@ -37,7 +39,7 @@
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
     "transform": {
-      ".(ts|tsx|js|jsx)": "test-js"
+      ".(ts|tsx|js|jsx)": "ts-jest"
     },
     "testEnvironment": "node",
     "bail": true,

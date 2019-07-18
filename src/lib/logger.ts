@@ -7,9 +7,9 @@ const template = (log: any) =>
 
 const logger: Logger = winston.createLogger({
   format: winston.format.combine(
+    winston.format.timestamp(),
     winston.format.colorize(),
     winston.format.printf((log) => template(log)),
-    winston.format.timestamp(),
   ),
   level: config.logging.logLevel,
   transports: [

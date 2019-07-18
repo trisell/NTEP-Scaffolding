@@ -13,6 +13,17 @@ class App {
       this.initializeRoutes(routes);
     }
 
+    public getServer() {
+      return this.app;
+    }
+
+    public listen() {
+      // This is to allow Jest to run test and clean up the server after tests.
+      this.app.listen(process.env.PORT, () => {
+        logger.info(`App listening on the port ${process.env.PORT}`);
+      });
+    }
+
     private initializeMiddleware() {
       this.app.use(bodyParser.json());
     }
@@ -22,20 +33,6 @@ class App {
         this.app.use('/', route.router);
       });
     }
-
-    public getServer() {
-      return this.app;
-    }
-
-    public listen() {
-      //This is to allow Jest to run test and clean up the server after tests.
-      //if (!module.parent) {
-        this.app.listen(process.env.PORT, () => {
-          logger.info(`App listening on the port ${process.env.PORT}`);
-        });
-      //}
-    }
-
 }
 
 export default App;

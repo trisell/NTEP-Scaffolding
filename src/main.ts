@@ -1,16 +1,23 @@
 import App from './app';
-import config from './config';
-import RequestsRouter from './router/requests/requests.router';
+import config from './ormconfig';
+import logger from './lib/logger';
+import validateEnv from './lib/validateEnv';
 import StatusRouter from './router/status/status.router';
+import { createConnection } from 'typeorm';
 
-const app = new App(
-  [
-    new RequestsRouter,
-    new StatusRouter,
-  ],
-  config.port,
-);
- 
-app.listen();
+validateEnv();
 
-export default app;
+(async () => {
+  try {
+    await createConnection(config);
+  } catch (error) {
+    logger.error('Error while connecting to the database');
+    return error;
+  }
+  const app = new App(
+    [
+      new StatusRouter(),
+    ],
+  );
+  app.listen();
+})();
