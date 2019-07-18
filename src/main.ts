@@ -1,14 +1,23 @@
-import { Application } from 'express';
-import config from './config';
+import App from './app';
+import config from './ormconfig';
 import logger from './lib/logger';
-import router from './router/router';
+import validateEnv from './lib/validateEnv';
+import StatusRouter from './router/status/status.router';
+import { createConnection } from 'typeorm';
 
-const app: Application = router;
+validateEnv();
 
-if (!module.parent) {
-  app.listen(config.port);
-}
-
-logger.info(`Server started. Listening on ${config.port}`);
-
-export default app;
+(async () => {
+  try {
+    await createConnection(config);
+  } catch (error) {
+    logger.error('Error while connecting to the database');
+    return error;
+  }
+  const app = new App(
+    [
+      new StatusRouter(),
+    ],
+  );
+  app.listen();
+})();
