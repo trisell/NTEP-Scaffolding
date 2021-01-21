@@ -1,2 +1,2 @@
-# NEP-API-Starter
-Node Express Postgres Rest API project starter
+# NTEP-API-Starter
+Node Typescript Express Postgres Rest API project starter
