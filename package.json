@@ -19,7 +19,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "envalid": "^6.0.2",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "pg": "^7.9.0",
     "typeorm": "^0.2.18",
     "winston": "^3.2.1"
