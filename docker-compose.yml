@@ -1,27 +1,27 @@
 version: "3"
 services:
 
-  #transpiler:
-  #  build: .
-  #  volumes:
-  #    - .:/app:cached
-  #  command: tsc --w
+  transpiler:
+    build: .
+    volumes:
+      - .:/app:cached
+    command: tsc --w
 
-  #api:
-  #  build: .
-  #  ports:
-  #    - "0.0.0.0:4000:4000"
-  #  volumes:
-  #    - ./:/app:cached
-  #  command: nodemon -L dist/main.js
-  #  environment:
-  #    PORT: 4000
-  #    LOG_LEVEL: "debug"
-  #    POSTGRES_HOST: db
-  #    POSTGRES_PORT: "5432"
-  #    POSTGRES_USER: "Admin"
-  #    POSTGRES_PASSWORD: "admin"
-  #    POSTGRES_DB: "application"
+  api:
+    build: .
+    ports:
+      - "0.0.0.0:4000:4000"
+    volumes:
+      - ./:/app:cached
+    command: nodemon -L dist/main.js
+    environment:
+      PORT: 4000
+      LOG_LEVEL: "debug"
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: "Admin"
+      POSTGRES_PASSWORD: "admin"
+      POSTGRES_DB: "application"
 
   #db:
   #  image: postgres:alpine
@@ -39,7 +39,7 @@ services:
     build: .
     volumes:
       - .:/app:cached
-    command: nodemon --delay 500ms -L --exec "find . -path ./ -prune -o -path ./node_modules -prune -o -path ./dist -prune -o -name '*.ts' -print | xargs tslint"
+    command: "nodemon --watch src/main.ts --exec \"eslint src/**/*.ts ; exit 0\""
 
   #jest:
   #  build: .

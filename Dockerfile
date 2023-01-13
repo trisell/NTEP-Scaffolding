@@ -1,11 +1,8 @@
 # smart people already figured out how to install node
-FROM mhart/alpine-node:11.13.0 
-
+FROM node:19-alpine
 # create a work directory inside the container
 RUN mkdir /app
 WORKDIR /app
 
 # install utilities. I currently like yarn
-RUN npm install -g yarn nodemon typescript tslint ts-node jest ts-jest
-# install dependencies
-RUN npm install
+RUN npm install -g nodemon @typescript-eslint/parser @typescript-eslint/eslint-plugin typescript eslint ts-node jest ts-jest
